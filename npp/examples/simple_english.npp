@@ -1,0 +1,42 @@
+// ==============================================================
+//           N++ WRITING CODE LIKE SIMPLE ENGLISH SENTENCES
+// ==============================================================
+
+say "=== Weather Assistant in Plain English ==="
+
+set weather to "sunny"
+set temperature to 28
+
+// Notice how natural this conditional sounds:
+if temperature is greater than 30 then
+    say "It is hot outside! Wear light clothes."
+otherwise if temperature is less than 15 then
+    say "It is chilly outside! Bring a jacket."
+otherwise
+    say "The weather is pleasant! Perfect for a walk."
+end
+
+say ""
+say "=== Grocery List in Plain English ==="
+
+set cart to ["apples", "milk", "bread", "cookies"]
+
+say "Items in my shopping cart:"
+for each item in cart
+    say "  - Need to buy: " + item
+end
+
+say "Total items to buy: " + len(cart)
+
+say ""
+say "=== Simple English Functions ==="
+
+to calculate_area with length, width
+    give back length * width
+end
+
+set room_length to 10
+set room_width to 12
+set area to calculate_area(room_length, room_width)
+
+say "The room area is " + area + " square meters."

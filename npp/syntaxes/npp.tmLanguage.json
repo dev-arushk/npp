@@ -1,0 +1,87 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "N++",
+  "scopeName": "source.npp",
+  "fileTypes": ["npp"],
+  "patterns": [
+    {
+      "name": "comment.line.double-slash.npp",
+      "match": "//.*$"
+    },
+    {
+      "name": "comment.line.number-sign.npp",
+      "match": "#.*$"
+    },
+    {
+      "name": "comment.line.note.npp",
+      "match": "(?i)\\bnote\\s*:.*$"
+    },
+    {
+      "name": "comment.block.npp",
+      "begin": "/\\*",
+      "end": "\\*/"
+    },
+    {
+      "name": "string.quoted.double.npp",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.npp",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.single.npp",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "name": "constant.character.escape.npp",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "constant.numeric.npp",
+      "match": "\\b\\d+(\\.\\d+)?\\b"
+    },
+    {
+      "name": "constant.language.boolean.npp",
+      "match": "(?i)\\b(true|false|yes|no)\\b"
+    },
+    {
+      "name": "constant.language.null.npp",
+      "match": "(?i)\\b(null|none|nothing)\\b"
+    },
+    {
+      "name": "keyword.control.npp",
+      "match": "(?i)\\b(if|then|otherwise|else|elif|end|repeat|times|while|for|each|in|do|break|continue|stop|next|to|with|give\\s+back|return)\\b"
+    },
+    {
+      "name": "keyword.operator.english.npp",
+      "match": "(?i)\\b(is\\s+not|is\\s+greater\\s+than(\\s+or\\s+equal\\s+to)?|is\\s+less\\s+than(\\s+or\\s+equal\\s+to)?|greater\\s+than(\\s+or\\s+equal\\s+to)?|less\\s+than(\\s+or\\s+equal\\s+to)?|at\\s+least|at\\s+most|is|equals|and|or|not)\\b"
+    },
+    {
+      "name": "keyword.declaration.npp",
+      "match": "(?i)\\b(set|let|const|change|make|to)\\b"
+    },
+    {
+      "name": "keyword.io.npp",
+      "match": "(?i)\\b(say|print|println|display|show|ask)\\b"
+    },
+    {
+      "name": "entity.name.tag.html5.npp",
+      "match": "\\b(html|head|body|header|footer|nav|main|section|article|aside|div|span|h1|h2|h3|h4|h5|h6|p|a|img|ul|ol|li|dl|dt|dd|table|thead|tbody|tfoot|tr|th|td|form|input|button|select|option|textarea|label|details|summary|dialog|video|audio|canvas|svg|blockquote|code|pre|progress|meter|badge|card|hero|navbar|grid|container|alert|page_footer|webpage|export_html|render_html)\\b"
+    },
+    {
+      "name": "support.function.builtin.npp",
+      "match": "\\b(len|length|range|push|pop|append|keys|values|type|str|text|num|number|bool|abs|round|floor|ceil|sqrt|sin|cos|tan|pi|min|max|sum|average|clamp|upper|lower|split|join|replace|trim|contains|uuid|random|random_int|random_choice|hash_sha256|hash_md5|read_file|write_file|append_file|file_exists|list_files|to_json|from_json|http_get|http_post|fetch|time|clock|sleep)\\b"
+    },
+    {
+      "name": "keyword.operator.symbolic.npp",
+      "match": "(\\+|-|\\*|/|%|\\^|==|!=|<=|>=|<|>|=|\\+=|-=|\\*=|/=|&&|\\|\\||!)"
+    }
+  ]
+}

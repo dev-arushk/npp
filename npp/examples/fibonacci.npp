@@ -1,0 +1,15 @@
+// ==============================================================
+//                    FIBONACCI IN N++
+// ==============================================================
+
+to fibonacci with n
+    if n is less than or equal to 1 then
+        give back n
+    end
+    give back fibonacci(n - 1) + fibonacci(n - 2)
+end
+
+say "First 10 Fibonacci numbers:"
+for each i in range(10)
+    say "fib(" + i + ") = " + fibonacci(i)
+end

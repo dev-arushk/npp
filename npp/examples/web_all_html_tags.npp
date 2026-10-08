@@ -1,0 +1,505 @@
+// ==============================================================
+//      N++ ULTIMATE WEB SHOWCASE — 100% Interactive Edition
+//   Every HTML5 tag • Modals • Tabs • Counters • Live Filter
+//   Accordion • Typewriter • Progress Bars • Copy Buttons
+// ==============================================================
+
+say "Building the ultimate interactive N++ showcase..."
+
+// ── Create Page ──────────────────────────────────────────────
+set page to webpage("N++ Ultimate Web Showcase", "dark")
+
+// ── Navbar ───────────────────────────────────────────────────
+navbar("N++ Web", [{"Components": "#components"}, {"Tags": "#tags"}, {"Forms": "#forms"}, {"Interactive": "#interactive"}, {"Docs": "#docs"}], "Get Started ✨", "#start")
+
+// ── Hero with Typewriter ─────────────────────────────────────
+hero("N++ Web Engine 🚀", "The future of building websites — in plain English. Zero setup. Infinite power.", "See It Live", "#interactive")
+
+// ── SECTION 1: Stats counters ────────────────────────────────
+set stats_box to div({"style": "text-align:center; padding: 3rem 2rem; background: var(--npp-surface); border-bottom: 1px solid var(--npp-border);"})
+stats_box.add(h2("N++ by the Numbers", {"style": "margin-bottom: 2rem;"}))
+
+set stats_inner to div({"style": "display:flex; gap:2rem; justify-content:center; flex-wrap:wrap;"})
+
+set s1 to div({"style": "text-align:center;"})
+s1.add(div({"id": "count-tags", "data-npp-count": "110", "class": "npp-counter-display", "style": "font-size:3rem;font-weight:800;color:var(--npp-primary);"}))
+s1.add(p("HTML5 Tags Supported", {"style": "color:var(--npp-text-muted); margin-top:0.5rem;"}))
+
+set s2 to div({"style": "text-align:center;"})
+s2.add(div({"id": "count-themes", "data-npp-count": "4", "class": "npp-counter-display", "style": "font-size:3rem;font-weight:800;color:var(--npp-primary);"}))
+s2.add(p("Built-in Themes", {"style": "color:var(--npp-text-muted); margin-top:0.5rem;"}))
+
+set s3 to div({"style": "text-align:center;"})
+s3.add(div({"id": "count-deps", "data-npp-count": "0", "class": "npp-counter-display", "style": "font-size:3rem;font-weight:800;color:var(--npp-primary);"}))
+s3.add(p("External Dependencies", {"style": "color:var(--npp-text-muted); margin-top:0.5rem;"}))
+
+set s4 to div({"style": "text-align:center;"})
+s4.add(div({"id": "count-speed", "data-npp-count": "1000", "class": "npp-counter-display", "style": "font-size:3rem;font-weight:800;color:var(--npp-primary);"}))
+s4.add(p("Times Cleaner than HTML", {"style": "color:var(--npp-text-muted); margin-top:0.5rem;"}))
+
+stats_inner.add(s1)
+stats_inner.add(s2)
+stats_inner.add(s3)
+stats_inner.add(s4)
+stats_box.add(stats_inner)
+page.add(stats_box)
+
+// ── Main Content Box ─────────────────────────────────────────
+set main_box to container()
+
+// ── SECTION 2: High-level Components ─────────────────────────
+set comp_section to section({"id": "components", "data-npp-reveal": "true"})
+comp_section.add(h2("1. Modern Components — Better Than Any HTML Framework"))
+comp_section.add(p("No React, no Vue, no CSS framework. N++ renders production-ready, responsive UIs in plain English sentences:"))
+
+// Live search filter
+set search_box to div({"style": "margin: 1.5rem 0;"})
+search_box.add(label("🔍 Search features live:", {"for": "feature-search"}))
+search_box.add(input({"id": "feature-search", "type": "search", "placeholder": "Type to filter cards...", "data-npp-filter": ".npp-card", "style": "margin-top: 0.5rem;"}))
+comp_section.add(search_box)
+
+// Cards (searchable because they have class npp-card)
+set c1 to card("110+ HTML5 Tags", "Every standard HTML5 tag works as a simple function call. No closing tags ever.", "🌐", null, "Complete", "See Tags", "#tags")
+set c2 to card("Zero Setup", "No npm, no webpack, no config. Just write N++ and it works instantly.", "⚡", null, "Fast", "Quickstart", "#docs")
+set c3 to card("Live Dev Server", "Embedded HTTP server launches your page directly in the browser.", "🚀", null, "DevOps", "Learn More", "#docs")
+set c4 to card("4 Built-in Themes", "Switch between Dark, Modern, Glassmorphism, and Cyberpunk themes live.", "🎨", null, "Design", "Try Themes", "#")
+set c5 to card("Interactive Runtime", "Modals, tabs, toasts, counters, live filter — all built in. Zero JS required.", "✨", null, "Magic", "See Demo", "#interactive")
+set c6 to card("Smart Forms", "All form inputs auto-handled with animated toast confirmations.", "📋", null, "UX", "Try Form", "#forms")
+
+set comp_grid to grid(3, [c1, c2, c3, c4, c5, c6])
+comp_section.add(comp_grid)
+main_box.add(comp_section)
+
+// ── SECTION 3: HTML5 Typography ──────────────────────────────
+set typo_section to section({"id": "tags", "style": "margin-top: 4rem;", "data-npp-reveal": "true"})
+typo_section.add(h2("2. Every HTML5 Tag — Working Perfectly"))
+typo_section.add(h3("Headings h1–h6 all supported"))
+typo_section.add(h4("H4: Subheading for sections"))
+typo_section.add(h5("H5: Minor heading"))
+typo_section.add(h6("H6: Caption-level heading"))
+
+typo_section.add(p("Rich text semantics work flawlessly. Use " +
+  "strong for bold, " +
+  "em for italic, " +
+  "del for strikethrough, " +
+  "ins for inserted text, " +
+  "mark for highlighted text, " +
+  "abbr for abbreviations, " +
+  "sup for superscript and " +
+  "sub for subscript."))
+
+set quote to blockquote('"The best code is no code at all." — Jeff Atwood', {"style": "border-left:4px solid var(--npp-primary);padding:1rem 1.5rem;border-radius:0 12px 12px 0;background:var(--npp-surface-card);margin:1.5rem 0;"})
+typo_section.add(quote)
+
+// Code block
+typo_section.add(h4("Code Blocks — Copyable:"))
+set code_wrap to div({"style": "position:relative;"})
+set code_el to pre()
+code_el.add(code("set page to webpage(\"My Site\", \"dark\")\nnavbar(\"Brand\", [{\"Home\": \"/\"}])\nhero(\"Welcome!\", \"Built with N++\")\nexport_html(\"index.html\", page)"))
+code_wrap.add(code_el)
+code_wrap.add(button("📋 Copy", {"data-npp-copy": "", "class": "npp-button", "style": "position:absolute;top:10px;right:10px;padding:6px 14px;font-size:0.8rem;"}))
+typo_section.add(code_wrap)
+
+main_box.add(typo_section)
+
+// ── SECTION 4: Tables ─────────────────────────────────────────
+set table_section to section({"style": "margin-top: 4rem;", "data-npp-reveal": "true"})
+table_section.add(h2("3. Full HTML5 Tables"))
+
+set my_table to table({"style": "margin-top: 1rem;"})
+set thead_el to thead()
+set tr_head to tr()
+tr_head.add(th("Language", {"style": "min-width:140px;"}))
+tr_head.add(th("Readability"))
+tr_head.add(th("Setup Time"))
+tr_head.add(th("Themes Built-in"))
+tr_head.add(th("Rating"))
+thead_el.add(tr_head)
+my_table.add(thead_el)
+
+set tbody_el to tbody()
+
+set r1 to tr()
+r1.add(td("N++ Web ⭐"))
+r1.add(td("Plain English sentences"))
+r1.add(td("0 seconds"))
+r1.add(td("4 premium themes"))
+r1.add(td("⭐⭐⭐⭐⭐"))
+tbody_el.add(r1)
+
+set r2 to tr()
+r2.add(td("Raw HTML5"))
+r2.add(td("Verbose closing tags"))
+r2.add(td("Minutes"))
+r2.add(td("None built-in"))
+r2.add(td("⭐⭐⭐"))
+tbody_el.add(r2)
+
+set r3 to tr()
+r3.add(td("HTML + React"))
+r3.add(td("JSX, complex"))
+r3.add(td("Hours of setup"))
+r3.add(td("None built-in"))
+r3.add(td("⭐⭐"))
+tbody_el.add(r3)
+
+my_table.add(tbody_el)
+
+set cap to caption("Comparison: N++ vs Other Web Technologies")
+my_table.add(cap)
+
+table_section.add(my_table)
+main_box.add(table_section)
+
+// ── SECTION 5: Lists ──────────────────────────────────────────
+set list_section to section({"style": "margin-top: 4rem;", "data-npp-reveal": "true"})
+list_section.add(h2("4. Lists — Ordered, Unordered, Definition"))
+
+list_section.add(h4("Unordered List (ul/li):"))
+set my_ul to ul()
+my_ul.add(li("Write webpages in plain English"))
+my_ul.add(li("110+ HTML5 tags work as functions"))
+my_ul.add(li("4 beautiful built-in themes"))
+my_ul.add(li("Zero external dependencies"))
+my_ul.add(li("Interactive modals, tabs, counters auto-included"))
+list_section.add(my_ul)
+
+list_section.add(h4("Ordered List (ol/li):"))
+set my_ol to ol()
+my_ol.add(li("Install Python 3.9+"))
+my_ol.add(li("Run: python main.py examples\\web_all_html_tags.npp"))
+my_ol.add(li("Open showcase.html in your browser"))
+my_ol.add(li("Be amazed 🚀"))
+list_section.add(my_ol)
+
+list_section.add(h4("Definition List (dl/dt/dd):"))
+set my_dl to dl()
+my_dl.add(dt("N++"))
+my_dl.add(dd("A next-generation programming language for building modern webpages"))
+my_dl.add(dt("HTMLElement"))
+my_dl.add(dd("Any standard HTML5 tag callable as a function in N++"))
+my_dl.add(dt("Webpage"))
+my_dl.add(dd("The root document object that renders to complete HTML5"))
+list_section.add(my_dl)
+
+main_box.add(list_section)
+
+// ── SECTION 6: Forms ─────────────────────────────────────────
+set form_section to section({"id": "forms", "style": "margin-top: 4rem;", "data-npp-reveal": "true"})
+form_section.add(h2("5. Complete HTML5 Forms — Auto-Handled"))
+form_section.add(p("Submit this form to see the animated toast confirmation. No backend required!"))
+
+set my_form to form({"action": "#", "method": "post", "style": "max-width: 640px;"})
+
+// Fieldset and legend
+set fset to fieldset()
+fset.add(legend("Personal Information"))
+fset.add(label("Full Name:", {"for": "fullname"}))
+fset.add(input({"type": "text", "id": "fullname", "name": "name", "placeholder": "Alice Cooper", "required": true, "autocomplete": "name"}))
+fset.add(label("Email Address:", {"for": "email"}))
+fset.add(input({"type": "email", "id": "email", "name": "email", "placeholder": "alice@example.com", "required": true}))
+fset.add(label("Phone Number:", {"for": "phone"}))
+fset.add(input({"type": "tel", "id": "phone", "name": "phone", "placeholder": "+1 (555) 000-0000"}))
+my_form.add(fset)
+
+set fset2 to fieldset()
+fset2.add(legend("Preferences"))
+fset2.add(label("Experience Level:", {"for": "level"}))
+set sel to select({"id": "level", "name": "level"})
+sel.add(option("Beginner", {"value": "beginner"}))
+sel.add(option("Intermediate", {"value": "mid"}))
+sel.add(option("Pro — Loves N++!", {"value": "pro", "selected": true}))
+fset2.add(sel)
+
+fset2.add(label("Skill Progress:", {"for": "skill-range"}))
+fset2.add(input({"type": "range", "id": "skill-range", "name": "skill", "min": "0", "max": "100", "value": "75"}))
+
+fset2.add(label("Favorite Color:", {"for": "fav-color"}))
+fset2.add(input({"type": "color", "id": "fav-color", "name": "color", "value": "#6366f1"}))
+
+fset2.add(label("Start Date:", {"for": "start-date"}))
+fset2.add(input({"type": "date", "id": "start-date", "name": "date"}))
+
+fset2.add(label("", {"for": "newsletter"}))
+set newsletter_wrap to div({"style": "display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;"})
+newsletter_wrap.add(input({"type": "checkbox", "id": "newsletter", "name": "newsletter", "style": "width:auto;margin:0;"}))
+newsletter_wrap.add(label("Subscribe to N++ newsletter", {"for": "newsletter", "style": "margin:0;cursor:pointer;"}))
+fset2.add(newsletter_wrap)
+
+fset2.add(label("Your Message:", {"for": "msg"}))
+fset2.add(textarea({"id": "msg", "name": "message", "rows": 4, "placeholder": "Tell us what you want to build with N++..."}))
+my_form.add(fset2)
+
+my_form.add(button("🚀 Submit — Watch the Toast!", {"type": "submit", "class": "npp-button"}))
+form_section.add(my_form)
+main_box.add(form_section)
+
+// ── SECTION 7: Interactive Elements ──────────────────────────
+set inter_section to section({"id": "interactive", "style": "margin-top: 4rem;", "data-npp-reveal": "true"})
+inter_section.add(h2("6. Interactive Elements — All Automatic"))
+
+// 7a: Tabs
+inter_section.add(h3("Tabs — No JavaScript to Write:"))
+set tab_container to div({"class": "npp-tabs-container"})
+set tab_bar to div({"class": "npp-tab-bar"})
+tab_bar.add(button("🌐 HTML5", {"class": "npp-tab-button", "data-target": "tab-html"}))
+tab_bar.add(button("🎨 CSS Themes", {"class": "npp-tab-button", "data-target": "tab-css"}))
+tab_bar.add(button("⚡ JS Runtime", {"class": "npp-tab-button", "data-target": "tab-js"}))
+tab_bar.add(button("🚀 N++ Syntax", {"class": "npp-tab-button", "data-target": "tab-npp"}))
+tab_container.add(tab_bar)
+
+set panel1 to div({"class": "npp-tab-panel", "id": "tab-html"})
+panel1.add(h4("All 110+ HTML5 Tags Work Instantly"))
+panel1.add(p("div, span, section, article, aside, header, footer, nav, main — all semantic HTML5 layout tags supported."))
+panel1.add(p("a, img, video, audio, canvas, svg, iframe, embed, object, source, track — all media tags work."))
+tab_container.add(panel1)
+
+set panel2 to div({"class": "npp-tab-panel", "id": "tab-css"})
+panel2.add(h4("4 Premium Themes Built-in"))
+panel2.add(p("Use the dropdown in the navbar to switch themes live! 🎨"))
+
+set p_dark to div({"class": "npp-progress"})
+p_dark.add(div({"class": "npp-progress-bar", "data-value": "100", "style": "background: linear-gradient(90deg,#6366f1,#8b5cf6);"}))
+panel2.add(p("Dark Theme:"))
+panel2.add(p_dark)
+
+set p_modern to div({"class": "npp-progress"})
+p_modern.add(div({"class": "npp-progress-bar", "data-value": "95", "style": "background: linear-gradient(90deg,#4f46e5,#7c3aed);"}))
+panel2.add(p("Modern Theme:"))
+panel2.add(p_modern)
+
+set p_glass to div({"class": "npp-progress"})
+p_glass.add(div({"class": "npp-progress-bar", "data-value": "90", "style": "background: linear-gradient(90deg,#a855f7,#ec4899);"}))
+panel2.add(p("Glassmorphism:"))
+panel2.add(p_glass)
+
+tab_container.add(panel2)
+
+set panel3 to div({"class": "npp-tab-panel", "id": "tab-js"})
+panel3.add(h4("Interactive Runtime Features (Zero Code Required)"))
+set feat_list to ul()
+feat_list.add(li("🔔 Toast notifications with type-colored animations"))
+feat_list.add(li("🪟 Modal dialogs with keyboard Escape support"))
+feat_list.add(li("📑 Tab switchers with animated panels"))
+feat_list.add(li("🔢 Interactive counters with bounce animation"))
+feat_list.add(li("🔍 Real-time live card search filter"))
+feat_list.add(li("🌊 Ripple effect on all npp-button elements"))
+feat_list.add(li("💬 Accordion FAQ with smooth expand/collapse"))
+feat_list.add(li("⌨️  Typewriter text animation"))
+feat_list.add(li("📈 Animated number counting on scroll"))
+feat_list.add(li("⬆️  Scroll-to-top floating button"))
+feat_list.add(li("🖼️  Lazy image loading with fade-in"))
+feat_list.add(li("📋 Copy-to-clipboard buttons"))
+feat_list.add(li("👆 Tooltips on hover"))
+feat_list.add(li("🌟 Scroll reveal animations"))
+panel3.add(feat_list)
+tab_container.add(panel3)
+
+set panel4 to div({"class": "npp-tab-panel", "id": "tab-npp"})
+panel4.add(h4("N++ Web Syntax — As Easy As English"))
+set npp_code to pre()
+npp_code.add(code("// This is all you need for a full webpage:\nset page to webpage(\"My App\", \"dark\")\nnavbar(\"MyBrand\", [{\"Home\": \"/\"}], \"Sign Up\", \"/signup\")\nhero(\"Welcome to My App\", \"The future is here.\", \"Get Started\", \"#\")\nset c1 to card(\"Feature A\", \"Description.\", \"🚀\")\npage.add(grid(3, [c1]))\nexport_html(\"index.html\", page)"))
+panel4.add(npp_code)
+tab_container.add(panel4)
+
+inter_section.add(tab_container)
+
+// 7b: Counter
+inter_section.add(h3("Counters — Click the Buttons:"))
+set counter_wrap to div({"style": "display:flex;align-items:center;gap:1rem;padding:1.5rem;background:var(--npp-surface-card);border-radius:12px;border:1px solid var(--npp-border);margin:1rem 0;width:fit-content;"})
+counter_wrap.add(button("➖", {"data-npp-counter": "main-counter", "data-npp-step": "-1", "class": "npp-button", "style": "font-size:1.4rem;padding:10px 18px;"}))
+counter_wrap.add(span("0", {"id": "main-counter", "class": "npp-counter-display"}))
+counter_wrap.add(button("➕", {"data-npp-counter": "main-counter", "data-npp-step": "1", "class": "npp-button", "style": "font-size:1.4rem;padding:10px 18px;"}))
+inter_section.add(counter_wrap)
+
+// 7c: Modal trigger
+inter_section.add(h3("Modals — One Attribute Opens Them:"))
+set modal_btns to div({"style": "display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;"})
+modal_btns.add(button("🪟 Open Welcome Modal", {"data-npp-modal": "modal-welcome", "class": "npp-button"}))
+modal_btns.add(button("⚠️ Open Alert Modal", {"data-npp-modal": "modal-alert", "class": "npp-button", "style": "background:var(--npp-surface-card);border:1px solid var(--npp-border);"}))
+inter_section.add(modal_btns)
+
+// 7d: Progress bars
+inter_section.add(h3("Animated Progress Bars:"))
+set prog_wrap to div({"style": "max-width:500px;"})
+
+prog_wrap.add(label("N++ Mastery: 95%"))
+set pb1 to div({"class": "npp-progress"})
+pb1.add(div({"class": "npp-progress-bar", "data-value": "95"}))
+prog_wrap.add(pb1)
+
+prog_wrap.add(label("HTML5 Coverage: 100%"))
+set pb2 to div({"class": "npp-progress"})
+pb2.add(div({"class": "npp-progress-bar", "data-value": "100"}))
+prog_wrap.add(pb2)
+
+prog_wrap.add(label("Zero Setup: 100%"))
+set pb3 to div({"class": "npp-progress"})
+pb3.add(div({"class": "npp-progress-bar", "data-value": "100"}))
+prog_wrap.add(pb3)
+
+inter_section.add(prog_wrap)
+
+// 7e: Tooltips
+inter_section.add(h3("Tooltips — Hover Over These:"))
+set tip_row to div({"style": "display:flex;gap:1.5rem;flex-wrap:wrap;padding:1rem 0;"})
+tip_row.add(span("🌐 Hover: HTML5", {"data-npp-tip": "110+ standard HTML5 tags all work in N++", "style": "cursor:help;padding:8px 16px;background:var(--npp-surface-card);border-radius:8px;border:1px solid var(--npp-border);"}))
+tip_row.add(span("🎨 Hover: Themes", {"data-npp-tip": "4 themes: Dark, Modern, Glassmorphism, Cyberpunk", "style": "cursor:help;padding:8px 16px;background:var(--npp-surface-card);border-radius:8px;border:1px solid var(--npp-border);"}))
+tip_row.add(span("⚡ Hover: Speed", {"data-npp-tip": "Zero external dependencies. Pure Python + Browser.", "style": "cursor:help;padding:8px 16px;background:var(--npp-surface-card);border-radius:8px;border:1px solid var(--npp-border);"}))
+inter_section.add(tip_row)
+
+// 7f: Typewriter
+inter_section.add(h3("Typewriter Effect:"))
+set tw_el to div({"data-npp-type": "N++ makes building websites as easy as writing sentences...", "data-npp-delay": "500", "style": "font-size:1.2rem;font-style:italic;color:var(--npp-primary);padding:1rem 0;"})
+inter_section.add(tw_el)
+
+main_box.add(inter_section)
+
+// ── SECTION 8: Accordion / FAQ ───────────────────────────────
+set faq_section to section({"style": "margin-top: 4rem;", "data-npp-reveal": "true"})
+faq_section.add(h2("7. Accordion FAQ — Click to Expand"))
+
+set accordion to div({"class": "npp-accordion"})
+
+set a1 to div({"class": "npp-accordion-item"})
+set h_a1 to button("What is N++? ▼", {"class": "npp-accordion-header"})
+set b_a1 to div({"class": "npp-accordion-body"})
+b_a1.add(div({"class": "npp-accordion-content"}))
+a1.add(h_a1)
+a1.add(b_a1)
+accordion.add(a1)
+
+set a2 to div({"class": "npp-accordion-item"})
+set h_a2 to button("Do I need to know HTML? ▼", {"class": "npp-accordion-header"})
+set b_a2 to div({"class": "npp-accordion-body"})
+b_a2.add(div({"class": "npp-accordion-content"}))
+a2.add(h_a2)
+a2.add(b_a2)
+accordion.add(a2)
+
+set a3 to div({"class": "npp-accordion-item"})
+set h_a3 to button("Is N++ free and open source? ▼", {"class": "npp-accordion-header"})
+set b_a3 to div({"class": "npp-accordion-body"})
+b_a3.add(div({"class": "npp-accordion-content"}))
+a3.add(h_a3)
+a3.add(b_a3)
+accordion.add(a3)
+
+faq_section.add(accordion)
+
+// 8b: details/summary (native HTML5)
+faq_section.add(h3("HTML5 Native details/summary:"))
+set det to details()
+det.add(summary("🔥 Why is N++ 1000x better than raw HTML?"))
+det.add(p("1. No closing tags — ever. 2. English syntax so simple a 10-year-old can build websites. 3. Built-in themes, responsive grid, animations, and interactive runtime. 4. 110+ HTML5 tags as callable functions. 5. Zero external dependencies."))
+faq_section.add(det)
+
+set det2 to details()
+det2.add(summary("📦 How do I install N++?"))
+det2.add(p("Python 3.9+ is the only requirement. Clone the repo and run: python main.py your_script.npp — that's it!"))
+faq_section.add(det2)
+
+main_box.add(faq_section)
+
+// ── SECTION 9: Media elements ────────────────────────────────
+set media_section to section({"style": "margin-top: 4rem;", "data-npp-reveal": "true"})
+media_section.add(h2("8. Media & Semantic HTML5"))
+media_section.add(h4("Images with lazy loading:"))
+set lazy_img to img({"src": "https://placehold.co/600x200/6366f1/white?text=N%2B%2B+Web+Engine", "alt": "N++ Web Engine Banner", "style": "width:100%;border-radius:12px;margin-bottom:1rem;", "loading": "lazy"})
+media_section.add(lazy_img)
+
+media_section.add(h4("Figure with caption:"))
+set fig to figure()
+set img2 to img({"src": "https://placehold.co/400x200/a855f7/white?text=Built+with+N%2B%2B", "alt": "Built with N++", "style": "width:100%;border-radius:8px;"})
+fig.add(img2)
+fig.add(figcaption("A website built 100% with N++ — no external dependencies."))
+media_section.add(fig)
+
+media_section.add(h4("Meter & Progress:"))
+media_section.add(label("N++ Adoption:"))
+media_section.add(meter({"value": "0.87", "min": "0", "max": "1", "style": "width:200px;height:20px;"}))
+
+media_section.add(h4("HTML5 semantic layout tags:"))
+set sem_box to div({"style": "display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin:1rem 0;"})
+for tag_name in ["article", "aside", "main", "header", "footer", "section", "nav", "address"]
+    set tag_badge to div({"style": "padding:10px;background:var(--npp-primary);color:#fff;border-radius:8px;text-align:center;font-size:0.85rem;font-family:monospace;"})
+    tag_badge.add(span("<" + tag_name + ">"))
+    sem_box.add(tag_badge)
+end
+media_section.add(sem_box)
+
+main_box.add(media_section)
+
+// ── SECTION 10: N++ docs ─────────────────────────────────────
+set docs_section to section({"id": "docs", "style": "margin-top: 4rem;", "data-npp-reveal": "true"})
+docs_section.add(h2("9. Quick N++ Reference"))
+
+set ref_table to table()
+set ref_thead to thead()
+set ref_head_row to tr()
+ref_head_row.add(th("N++ Code"))
+ref_head_row.add(th("What it does"))
+ref_thead.add(ref_head_row)
+ref_table.add(ref_thead)
+
+set ref_tbody to tbody()
+set rows to [
+    ["set page to webpage(\"Title\", \"dark\")", "Create a webpage with dark theme"],
+    ["navbar(\"Brand\", links, \"CTA\", \"/url\")", "Full navigation bar with links"],
+    ["hero(\"Big Title\", \"Subtitle\", \"Btn\", \"#\")", "Full-width hero section"],
+    ["set c to card(\"Title\", \"Desc\", \"🚀\")", "Create a feature card"],
+    ["page.add(grid(3, [c1, c2, c3]))", "3-column responsive card grid"],
+    ["export_html(\"index.html\", page)", "Save the rendered HTML file"],
+    ["say \"Hello World\"", "Print output to terminal"],
+    ["set x to 42", "Declare a variable"]
+]
+
+for row_data in rows
+    set row_el to tr()
+    row_el.add(td(row_data[0], {"style": "font-family:monospace;font-size:0.85rem;color:var(--npp-primary);"}))
+    row_el.add(td(row_data[1]))
+    ref_tbody.add(row_el)
+end
+
+ref_table.add(ref_tbody)
+docs_section.add(ref_table)
+main_box.add(docs_section)
+
+// ── Add main box to page ──────────────────────────────────────
+page.add(main_box)
+
+// ── MODALS (placed at end of body) ───────────────────────────
+set modal1 to div({"class": "npp-modal", "id": "modal-welcome"})
+set modal1_box to div({"class": "npp-modal-box"})
+modal1_box.add(button("×", {"class": "npp-modal-close"}))
+modal1_box.add(div("Welcome to N++ Web Engine! 🚀", {"class": "npp-modal-title"}))
+set m1_body to div({"class": "npp-modal-body"})
+m1_body.add(p("Welcome to N++ — the language that makes building world-class websites as easy as writing plain English. No HTML expertise required!"))
+m1_body.add(p("This entire showcase was built using N++ scripts. Every card, table, form, tab, modal, and animation was generated automatically."))
+modal1_box.add(m1_body)
+set m1_footer to div({"class": "npp-modal-footer"})
+m1_footer.add(button("🚀 Let's Go!", {"class": "npp-button", "data-npp-modal-close": "true"}))
+modal1_box.add(m1_footer)
+modal1.add(modal1_box)
+page.add(modal1)
+
+set modal2 to div({"class": "npp-modal", "id": "modal-alert"})
+set modal2_box to div({"class": "npp-modal-box"})
+modal2_box.add(button("×", {"class": "npp-modal-close"}))
+modal2_box.add(div("⚠️ Important Warning", {"class": "npp-modal-title"}))
+set m2_body to div({"class": "npp-modal-body"})
+m2_body.add(p("⚠️ Warning: Once you try N++, you may never go back to writing raw HTML again."))
+m2_body.add(p("Side effects include: faster development, cleaner code, and an overwhelming sense of joy."))
+modal2_box.add(m2_body)
+set m2_footer to div({"class": "npp-modal-footer"})
+m2_footer.add(button("I Accept the Risks 😄", {"class": "npp-button", "data-npp-modal-close": "true"}))
+modal2_box.add(m2_footer)
+modal2.add(modal2_box)
+page.add(modal2)
+
+// ── Footer ───────────────────────────────────────────────────
+page_footer("Built 100% with N++ Web Engine — The Evolution of HTML. Zero dependencies. Pure power.")
+
+// ── Export HTML ──────────────────────────────────────────────
+export_html("showcase.html", page)
+say "Done! showcase.html is ready. Open it in your browser to see ALL interactive features!"

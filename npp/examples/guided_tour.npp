@@ -1,0 +1,66 @@
+// ====================================================
+//            INTERACTIVE STEP-BY-STEP N++ TOUR
+// ====================================================
+
+say "===================================================="
+say "          WELCOME TO YOUR FIRST N++ TOUR!           "
+say "===================================================="
+say ""
+say "--- STEP 1: TALKING TO THE SCREEN ---"
+say "In N++, you just write: say 'Hello!'"
+say "Output:"
+say "  Hello from N++!"
+say ""
+
+set d1 to ask "Press ENTER to go to Step 2..."
+
+say ""
+say "--- STEP 2: ASKING QUESTIONS & REMEMBERING ---"
+say "In N++, you write: set name to ask 'What is your name? '"
+set user_name to ask "What is your name? "
+say "Awesome! Nice to meet you, " + user_name + "!"
+say ""
+
+set d2 to ask "Press ENTER to go to Step 3..."
+
+say ""
+say "--- STEP 3: MAKING DECISIONS (IF / OTHERWISE) ---"
+say "We can compare numbers in plain English!"
+set age_input to ask "How old are you? "
+set age to num(age_input)
+
+if age is greater than 18 then
+    say "You are an adult!"
+otherwise if age is 18 then
+    say "You just turned 18! Welcome to adulthood!"
+otherwise
+    say "You are young and full of energy! Coding is going to be fun!"
+end
+say ""
+
+set d3 to ask "Press ENTER to go to Step 4..."
+
+say ""
+say "--- STEP 4: REPEATING ACTIONS (REPEAT LOOPS) ---"
+say "Instead of writing 3 print statements, you say: repeat 3 times"
+say "Watch this:"
+repeat 3 times
+    say "  * Cheer for " + user_name + "! Woohoo!"
+end
+say ""
+
+set d4 to ask "Press ENTER to go to Step 5..."
+
+say ""
+say "--- STEP 5: LIST OF FAVORITE THINGS ---"
+set favorites to ["Pizza", "Video Games", "Music"]
+say "Here is a list of fun things:"
+for each item in favorites
+    say "  - " + item
+end
+say ""
+
+say "===================================================="
+say "   CONGRATULATIONS! You completed your first test!  "
+say "   You now know how to write code in N++!           "
+say "===================================================="

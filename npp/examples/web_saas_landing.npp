@@ -1,0 +1,174 @@
+// ==============================================================
+//       N++ SAAS STARTUP LANDING PAGE — Interactive Edition
+//   Live counters, modals, animated progress, toast forms
+// ==============================================================
+
+say "Generating modern interactive SaaS landing page..."
+
+set app to webpage("Pulse AI - The Next-Gen Intelligence Platform", "glassmorphism")
+
+// Top Navbar (theme switcher auto-injected by runtime)
+navbar("Pulse.ai", [{"Features": "#features"}, {"Pricing": "#pricing"}, {"Testimonials": "#testimonials"}], "Launch App Free ✨", "#start")
+
+// Hero Section
+hero("AI Workflows Made Effortless",
+     "Automate your operations with intelligent autonomous agents. Built entirely with N++ Web.",
+     "Start Free Trial →", "#pricing")
+
+// Stats bar
+set stats_bar to div({"style": "background: rgba(255,255,255,0.05); padding: 2.5rem; text-align:center; border-bottom: 1px solid var(--npp-border);"})
+stats_bar.add(h3("Trusted by teams worldwide", {"style": "margin-bottom: 2rem; color: var(--npp-text-muted);"}))
+set stats_inner to div({"style": "display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;"})
+
+set stat1 to div({"style": "text-align:center;"})
+stat1.add(div({"data-npp-count": "25000", "style": "font-size:2.5rem;font-weight:800;color:var(--npp-primary);"}))
+stat1.add(p("Developers", {"style": "color:var(--npp-text-muted);margin-top:0.5rem;"}))
+
+set stat2 to div({"style": "text-align:center;"})
+stat2.add(div({"data-npp-count": "4", "style": "font-size:2.5rem;font-weight:800;color:var(--npp-primary);"}))
+stat2.add(p("AI Model Providers", {"style": "color:var(--npp-text-muted);margin-top:0.5rem;"}))
+
+set stat3 to div({"style": "text-align:center;"})
+stat3.add(div({"data-npp-count": "99", "style": "font-size:2.5rem;font-weight:800;color:var(--npp-primary);"}))
+stat3.add(p("Uptime %", {"style": "color:var(--npp-text-muted);margin-top:0.5rem;"}))
+
+set stat4 to div({"style": "text-align:center;"})
+stat4.add(div({"data-npp-count": "0", "style": "font-size:2.5rem;font-weight:800;color:var(--npp-primary);"}))
+stat4.add(p("Setup Required (mins)", {"style": "color:var(--npp-text-muted);margin-top:0.5rem;"}))
+
+stats_inner.add(stat1)
+stats_inner.add(stat2)
+stats_inner.add(stat3)
+stats_inner.add(stat4)
+stats_bar.add(stats_inner)
+app.add(stats_bar)
+
+set content to container()
+
+// Feature Grid
+set feat_section to section({"id": "features", "style": "margin-bottom: 4rem;", "data-npp-reveal": "true"})
+feat_section.add(h2("Built for Speed & Reliability", {"style": "text-align: center; margin-bottom: 2rem;"}))
+
+set f1 to card("Autonomous Agents", "Self-healing pipelines that adapt to changes in real-time.", "🤖", null, "AI Core", "Learn More", "#modal-agents")
+set f2 to card("Realtime Analytics", "Live telemetry streaming directly to your dashboards.", "📊", null, "Speed", "View Metrics", "#")
+set f3 to card("Bank-Grade Security", "End-to-end encryption with zero data leaks.", "🔒", null, "Security", "Audit Report", "#")
+set f4 to card("One-Click Deploy", "Push your AI workflows to production in seconds.", "🚀", null, "DevOps", "Deploy Now", "#")
+set f5 to card("Team Collaboration", "Real-time editing, comments, and role-based permissions.", "👥", null, "Teams", "Invite Team", "#")
+set f6 to card("API-First Design", "Full REST & GraphQL API. Integrate with anything.", "⚡", null, "API", "Read Docs", "#")
+
+feat_section.add(grid(3, [f1, f2, f3, f4, f5, f6]))
+content.add(feat_section)
+
+// Technology progress bars tab section
+set tech_section to section({"style": "margin-bottom: 4rem;", "data-npp-reveal": "true"})
+tech_section.add(h2("Our Technology Stack", {"style": "text-align:center; margin-bottom: 2rem;"}))
+
+set tech_tabs to div({"class": "npp-tabs-container"})
+set tech_bar to div({"class": "npp-tab-bar"})
+tech_bar.add(button("🤖 AI Engine", {"class": "npp-tab-button", "data-target": "tab-ai"}))
+tech_bar.add(button("🔒 Security", {"class": "npp-tab-button", "data-target": "tab-sec"}))
+tech_bar.add(button("📊 Scale", {"class": "npp-tab-button", "data-target": "tab-scale"}))
+tech_tabs.add(tech_bar)
+
+set tab_ai to div({"class": "npp-tab-panel", "id": "tab-ai"})
+tab_ai.add(h4("AI Model Performance"))
+set pb_gpt to div({"class": "npp-progress"})
+pb_gpt.add(div({"class": "npp-progress-bar", "data-value": "98", "style": "background: linear-gradient(90deg,#6366f1,#a855f7);"}))
+tab_ai.add(p("Response Accuracy:"))
+tab_ai.add(pb_gpt)
+set pb_speed to div({"class": "npp-progress"})
+pb_speed.add(div({"class": "npp-progress-bar", "data-value": "95", "style": "background: linear-gradient(90deg,#10b981,#06b6d4);"}))
+tab_ai.add(p("Speed vs Competitors:"))
+tab_ai.add(pb_speed)
+tech_tabs.add(tab_ai)
+
+set tab_sec to div({"class": "npp-tab-panel", "id": "tab-sec"})
+tab_sec.add(h4("Security Certifications"))
+set sec_ul to ul()
+sec_ul.add(li("SOC 2 Type II Certified"))
+sec_ul.add(li("GDPR Compliant — Data stays in your region"))
+sec_ul.add(li("AES-256 encryption at rest and in transit"))
+sec_ul.add(li("Zero-knowledge architecture available"))
+tab_sec.add(sec_ul)
+tech_tabs.add(tab_sec)
+
+set tab_scale to div({"class": "npp-tab-panel", "id": "tab-scale"})
+tab_scale.add(h4("Infrastructure at Scale"))
+set pb_up to div({"class": "npp-progress"})
+pb_up.add(div({"class": "npp-progress-bar", "data-value": "99"}))
+tab_scale.add(p("Global Uptime SLA:"))
+tab_scale.add(pb_up)
+tab_scale.add(p("Auto-scaling from 1 to 1 million concurrent users with zero configuration."))
+tech_tabs.add(tab_scale)
+
+tech_section.add(tech_tabs)
+content.add(tech_section)
+
+// Pricing Cards
+set price_section to section({"id": "pricing", "style": "margin-bottom: 4rem;", "data-npp-reveal": "true"})
+price_section.add(h2("Simple, Transparent Pricing", {"style": "text-align: center; margin-bottom: 2rem;"}))
+
+set p1 to card("Starter — $0/mo", "Perfect for hobbyists and early prototypes. 5 agents, 1K runs/month.", "🌱", null, "Free Forever", "Get Started Free", "#")
+set p2 to card("Pro — $29/mo", "Unlimited agents, priority queues, and 24/7 live support.", "⭐", null, "Most Popular", "Upgrade to Pro", "#modal-pro")
+set p3 to card("Enterprise — Custom", "Dedicated infrastructure, SLA guarantees, and custom fine-tuned models.", "🏢", null, "Scale", "Contact Sales", "#modal-enterprise")
+
+price_section.add(grid(3, [p1, p2, p3]))
+content.add(price_section)
+
+// Testimonials
+set test_section to section({"id": "testimonials", "style": "margin-bottom: 4rem;", "data-npp-reveal": "true"})
+test_section.add(h2("Loved by 25,000+ Engineers", {"style": "text-align: center; margin-bottom: 2rem;"}))
+
+set t1 to card('"Pulse AI replaced 4 tools in our stack overnight."', "Sarah Jenkins — VP Engineering at ScaleFlow", "💬")
+set t2 to card('"The N++ web frontend loads instantly. Phenomenal design."', "Marcus Vance — Founder at Apex Labs", "💬")
+set t3 to card('"We shipped our first AI product in 2 days. Zero boilerplate."', "Liu Wei — CTO at DataStack", "💬")
+
+test_section.add(grid(3, [t1, t2, t3]))
+content.add(test_section)
+
+// Newsletter form
+set cta_box to div({"id": "start", "style": "background: var(--npp-surface-card); padding: 3rem 2rem; border-radius: 20px; border: 1px solid var(--npp-border); text-align: center; max-width: 700px; margin: 0 auto 4rem;"})
+cta_box.add(h2("Ready to Supercharge Your Workflow? 🚀"))
+cta_box.add(p("Join 25,000+ developers receiving our weekly AI architecture briefings. No spam. Unsubscribe anytime."))
+
+set signup_form to form({"action": "#", "method": "post", "style": "display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;"})
+signup_form.add(input({"type": "email", "placeholder": "Enter your work email...", "required": true, "style": "max-width: 320px; margin-bottom: 0;"}))
+signup_form.add(button("Get Early Access", {"type": "submit", "class": "npp-button"}))
+cta_box.add(signup_form)
+content.add(cta_box)
+
+app.add(content)
+
+// Modals
+set modal_agents to div({"class": "npp-modal", "id": "modal-agents"})
+set mab to div({"class": "npp-modal-box"})
+mab.add(button("×", {"class": "npp-modal-close"}))
+mab.add(div("🤖 Autonomous Agents", {"class": "npp-modal-title"}))
+set mab_body to div({"class": "npp-modal-body"})
+mab_body.add(p("Pulse AI agents are self-healing, event-driven micro-orchestrators that monitor your pipelines 24/7."))
+mab_body.add(p("They detect anomalies, reroute traffic, retry failed tasks, and send you alerts — all without a single line of manual code."))
+mab.add(mab_body)
+set mab_footer to div({"class": "npp-modal-footer"})
+mab_footer.add(button("Try for Free", {"class": "npp-button", "data-npp-modal-close": "true"}))
+mab.add(mab_footer)
+modal_agents.add(mab)
+app.add(modal_agents)
+
+set modal_pro to div({"class": "npp-modal", "id": "modal-pro"})
+set mpb to div({"class": "npp-modal-box"})
+mpb.add(button("×", {"class": "npp-modal-close"}))
+mpb.add(div("⭐ Upgrade to Pro", {"class": "npp-modal-title"}))
+set mpb_body to div({"class": "npp-modal-body"})
+mpb_body.add(p("Pro gives you unlimited AI agents, priority inference queues, team collaboration, and 24/7 live support."))
+mpb_body.add(p("Cancel anytime. 14-day free trial. No credit card required to start."))
+mpb.add(mpb_body)
+set mpb_footer to div({"class": "npp-modal-footer"})
+mpb_footer.add(button("Start 14-Day Trial", {"class": "npp-button", "data-npp-modal-close": "true"}))
+mpb.add(mpb_footer)
+modal_pro.add(mpb)
+app.add(modal_pro)
+
+page_footer("© 2026 Pulse.ai. Built 100% with N++ Web Engine.")
+
+export_html("saas_landing.html", app)
+say "Generated interactive saas_landing.html!"
