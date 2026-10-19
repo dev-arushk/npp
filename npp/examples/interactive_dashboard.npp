@@ -1,0 +1,77 @@
+// ===============================================================================
+//               N++ INTERACTIVE ANALYTICS DASHBOARD
+//    Demonstrates: Webpage, StatCounters, ProgressBars, Modals, Accordions,
+//                  and responsive layouts in pure N++ English code!
+// ===============================================================================
+
+say "Compiling N++ Interactive Analytics Dashboard..."
+
+set page to webpage("Apex Analytics - Realtime Intelligence", "cyberpunk")
+
+// Top Navigation Bar
+navbar("Apex.io", [{"Overview": "#overview"}, {"Metrics": "#metrics"}, {"FAQ": "#faq"}], "Deploy Cluster ⚡", "#deploy-modal")
+
+// Hero Banner with Typewriter
+hero("Realtime Planetary Intelligence",
+     "Autonomous telemetry streaming across 40 global edge regions. Zero lag, zero downtime.",
+     "Explore Live Nodes →", "#metrics")
+
+// Main Layout Container
+set main_container to container()
+
+// Section 1: Live Animated Metric Stat Counters
+set s_metrics to section({"id": "overview", "style": "margin-bottom: 3.5rem;", "data-npp-reveal": "true"})
+s_metrics.add(h2("Global Network Health", {"style": "text-align: center; margin-bottom: 2rem;"}))
+
+set c1 to stat_counter(99999, "Requests / Sec", "⚡")
+set c2 to stat_counter(40, "Edge Clusters", "🌐")
+set c3 to stat_counter(0, "Packet Loss %", "🛡️")
+set c4 to stat_counter(12500, "Enterprise Nodes", "🚀")
+
+s_metrics.add(grid(4, [c1, c2, c3, c4]))
+main_container.add(s_metrics)
+
+// Section 2: Progress Bars for Cluster Resources
+set s_progress to section({"id": "metrics", "style": "margin-bottom: 3.5rem; background: var(--npp-surface-card); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--npp-border);", "data-npp-reveal": "true"})
+s_progress.add(h2("Cluster Resource Utilization", {"style": "margin-bottom: 1.5rem;"}))
+s_progress.add(progress_bar(88, "Tokyo Hyper-Cluster Memory"))
+s_progress.add(progress_bar(95, "Frankfurt Gateway Throughput"))
+s_progress.add(progress_bar(42, "US-East Silicon TPU Load"))
+s_progress.add(progress_bar(100, "Encrypted Vault Health"))
+main_container.add(s_progress)
+
+// Section 3: Interactive FAQ Accordion
+set s_faq to section({"id": "faq", "style": "margin-bottom: 3.5rem;", "data-npp-reveal": "true"})
+s_faq.add(h2("Frequently Answered Questions", {"style": "text-align: center; margin-bottom: 2rem;"}))
+
+set faq_items to [
+    ["How is this dashboard generated?", "This entire webpage was compiled from a tiny N++ script! Zero manual HTML or CSS required."],
+    ["How fast is the N++ web compiler?", "N++ compiles rich interactive pages in less than 0.02 seconds with zero build tools or npm dependencies."],
+    ["Can I customize visual themes?", "Yes! N++ includes 4 production themes: dark, modern, glassmorphism, and cyberpunk. Switch themes live using the navbar dropdown!"],
+    ["Does it support all modern HTML5 tags?", "Yes! All 110+ official HTML5 tags and global attributes are available as simple English functions."]
+]
+
+s_faq.add(accordion(faq_items))
+main_container.add(s_faq)
+
+// Section 4: Modal Trigger Button
+set cta_box to div({"style": "text-align: center; margin: 3rem 0; padding: 2rem;"})
+cta_box.add(button("🚀 Open Cluster Provisioner Modal", {
+    "class": "npp-button",
+    "data-npp-modal": "deploy-modal",
+    "style": "font-size: 1.1rem; padding: 1rem 2rem;"
+}))
+main_container.add(cta_box)
+
+page.add(main_container)
+
+// Interactive Modal
+modal("deploy-modal",
+      "⚡ Global Edge Cluster Provisioning",
+      "All edge nodes are currently running at optimal capacity. Click below to deploy 5 new regional nodes with instant automated DNS failover.",
+      "Deploy 5 Nodes")
+
+page_footer("© 2026 Apex.io Analytics. Built 100% with N++ Web Engine.")
+
+export_html("dashboard.html", page)
+say "Success! Created 'dashboard.html'. Open it in your browser to view the interactive dashboard!"

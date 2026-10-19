@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse AI - The Next-Gen Intelligence Platform</title>
+    <style>
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --npp-bg: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+  --npp-surface: rgba(255, 255, 255, 0.07);
+  --npp-surface-card: rgba(255, 255, 255, 0.08);
+  --npp-text: #ffffff;
+  --npp-text-muted: #cbd5e1;
+  --npp-primary: #a855f7;
+  --npp-primary-hover: #9333ea;
+  --npp-border: rgba(255, 255, 255, 0.15);
+  --npp-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --npp-accent: #38bdf8;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+  color: var(--npp-text);
+  font-family: 'Inter', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--npp-text);
+  margin-bottom: 0.75rem;
+}
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+p { margin-bottom: 1rem; color: var(--npp-text); }
+a { color: var(--npp-primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--npp-accent); text-decoration: underline; }
+
+/* Code blocks */
+code, pre, kbd {
+  font-family: 'Fira Code', monospace;
+  background: rgba(0,0,0,0.25);
+  border-radius: 6px;
+}
+code { padding: 0.2em 0.4em; font-size: 0.9em; }
+pre { padding: 1rem; overflow-x: auto; margin-bottom: 1rem; }
+
+/* Container & Layout */
+.npp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  width: 100%;
+}
+
+.npp-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+.npp-grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.npp-grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.npp-grid-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+.npp-flex {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* High-level Components */
+.npp-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--npp-surface);
+  border-bottom: 1px solid var(--npp-border);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.npp-brand {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--npp-text);
+}
+.npp-nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.npp-hero {
+  text-align: center;
+  padding: 5rem 1.5rem 4rem;
+  background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15), transparent 70%);
+}
+.npp-hero h1 {
+  font-size: 3.5rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+.npp-hero p {
+  font-size: 1.25rem;
+  color: var(--npp-text-muted);
+  max-width: 650px;
+  margin: 0 auto 2rem;
+}
+
+.npp-card {
+  background: var(--npp-surface-card);
+  border: 1px solid var(--npp-border);
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: var(--npp-shadow);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.npp-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--npp-primary);
+}
+.npp-card h3 {
+  margin-bottom: 0.5rem;
+}
+.npp-card p {
+  color: var(--npp-text-muted);
+  margin-bottom: 1rem;
+}
+
+.npp-button, button, input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--npp-primary);
+  color: #ffffff;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  text-decoration: none !important;
+}
+.npp-button:hover, button:hover {
+  background: var(--npp-primary-hover);
+  transform: translateY(-1px);
+}
+.npp-button-secondary {
+  background: transparent;
+  color: var(--npp-text);
+  border: 1px solid var(--npp-border);
+}
+.npp-button-secondary:hover {
+  background: var(--npp-surface);
+  color: var(--npp-accent);
+}
+
+.npp-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--npp-primary);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.npp-alert {
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--npp-border);
+  background: var(--npp-surface);
+}
+
+/* Form elements */
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select, textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--npp-border);
+  background: var(--npp-surface);
+  color: var(--npp-text);
+  margin-bottom: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--npp-primary);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+th, td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--npp-border);
+}
+th {
+  background: var(--npp-surface);
+  font-weight: 600;
+}
+tr:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+/* Footer */
+footer, .npp-footer {
+  margin-top: auto;
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid var(--npp-border);
+  text-align: center;
+  color: var(--npp-text-muted);
+  background: var(--npp-surface);
+}
+
+
+/* ===== N++ Interactive Runtime CSS ===== */
+
+/* --- Toasts --- */
+#npp-toast-container { position:fixed; bottom:24px; right:24px; z-index:10000;
+  display:flex; flex-direction:column; gap:10px; pointer-events:none; }
+.npp-toast { padding:14px 22px; border-radius:12px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.4);
+  font-weight:600; display:flex; align-items:center; gap:10px;
+  transform:translateY(30px); opacity:0;
+  transition:transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.35s ease;
+  pointer-events:auto; font-size:0.95rem; min-width:220px; max-width:380px; }
+.npp-toast.npp-toast-show { transform:translateY(0); opacity:1; }
+.npp-toast-icon { font-size:1.2rem; }
+
+/* --- Modal Overlay --- */
+.npp-modal {
+  display:none; position:fixed; inset:0; z-index:9000;
+  background:rgba(0,0,0,0.7); backdrop-filter:blur(6px);
+  align-items:center; justify-content:center;
+  opacity:0; transition:opacity 0.25s ease; }
+.npp-modal.open { opacity:1; }
+.npp-modal-box {
+  background:var(--npp-surface, #1e293b); border-radius:20px;
+  padding:36px 40px; max-width:560px; width:90%; position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  transform:scale(0.88) translateY(30px);
+  transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  border:1px solid var(--npp-border, #334155); }
+.npp-modal.open .npp-modal-box { transform:scale(1) translateY(0); }
+.npp-modal-close {
+  position:absolute; top:14px; right:18px; background:none; border:none;
+  font-size:1.6rem; cursor:pointer; color:var(--npp-text-muted, #94a3b8);
+  line-height:1; transition:color 0.2s, transform 0.2s; }
+.npp-modal-close:hover { color:var(--npp-text, #fff); transform:rotate(90deg); }
+.npp-modal-title { font-size:1.4rem; font-weight:700; margin:0 0 14px;
+  color:var(--npp-text, #fff); }
+.npp-modal-body { color:var(--npp-text-muted, #94a3b8); line-height:1.7; }
+.npp-modal-footer { margin-top:24px; display:flex; gap:12px; justify-content:flex-end; }
+
+/* --- Tabs --- */
+.npp-tabs-container { width:100%; }
+.npp-tab-bar {
+  display:flex; gap:4px; background:var(--npp-surface, #1e293b);
+  border-radius:12px 12px 0 0; padding:6px 6px 0;
+  border-bottom:2px solid var(--npp-border, #334155); overflow-x:auto; }
+.npp-tab-button {
+  padding:10px 22px; border:none; background:transparent; cursor:pointer;
+  font-size:0.9rem; font-weight:600; border-radius:8px 8px 0 0;
+  color:var(--npp-text-muted, #94a3b8);
+  transition:background 0.2s, color 0.2s; white-space:nowrap; }
+.npp-tab-button:hover { background:rgba(255,255,255,0.06); color:var(--npp-text,#fff); }
+.npp-tab-button.active {
+  background:var(--npp-primary, #6366f1); color:#fff;
+  box-shadow:0 4px 18px rgba(99,102,241,0.35); }
+.npp-tab-panel {
+  display:none; padding:28px; background:var(--npp-surface, #1e293b);
+  border-radius:0 0 12px 12px; border:1px solid var(--npp-border, #334155);
+  border-top:none; animation:nppFadeIn 0.25s ease; }
+.npp-tab-panel.active { display:block; }
+
+/* --- Accordion --- */
+.npp-accordion { border:1px solid var(--npp-border,#334155);
+  border-radius:12px; overflow:hidden; }
+.npp-accordion-item { border-bottom:1px solid var(--npp-border,#334155); }
+.npp-accordion-item:last-child { border-bottom:none; }
+.npp-accordion-header {
+  width:100%; background:var(--npp-surface,#1e293b); border:none;
+  padding:18px 24px; text-align:left; cursor:pointer; display:flex;
+  justify-content:space-between; align-items:center;
+  font-size:1rem; font-weight:600; color:var(--npp-text,#fff);
+  transition:background 0.2s; }
+.npp-accordion-header:hover { background:rgba(255,255,255,0.05); }
+.npp-accordion-arrow { transition:transform 0.3s; font-size:0.85rem; }
+.npp-accordion-header.open .npp-accordion-arrow { transform:rotate(180deg); }
+.npp-accordion-body {
+  max-height:0; overflow:hidden;
+  transition:max-height 0.4s cubic-bezier(0.16,1,0.3,1), padding 0.3s; }
+.npp-accordion-body.open { max-height:600px; }
+.npp-accordion-content {
+  padding:18px 24px; color:var(--npp-text-muted,#94a3b8); line-height:1.7; }
+
+/* --- Tooltip --- */
+[data-npp-tip] { position:relative; cursor:help; }
+[data-npp-tip]::after {
+  content:attr(data-npp-tip); position:absolute; bottom:calc(100% + 8px);
+  left:50%; transform:translateX(-50%) scale(0.9); white-space:nowrap;
+  background:#1e293b; color:#fff; padding:6px 12px; border-radius:8px;
+  font-size:0.82rem; font-weight:500; pointer-events:none; opacity:0;
+  transition:opacity 0.2s, transform 0.2s; z-index:5000;
+  box-shadow:0 6px 20px rgba(0,0,0,0.4);
+  border:1px solid rgba(255,255,255,0.1); }
+[data-npp-tip]:hover::after { opacity:1; transform:translateX(-50%) scale(1); }
+
+/* --- Ripple Button --- */
+.npp-button { position:relative; overflow:hidden; }
+.npp-ripple {
+  position:absolute; border-radius:50%; background:rgba(255,255,255,0.25);
+  transform:scale(0); animation:nppRipple 0.6s linear; pointer-events:none; }
+
+/* --- Progress Bar animated --- */
+.npp-progress {
+  width:100%; height:10px; background:var(--npp-surface,#1e293b);
+  border-radius:999px; overflow:hidden; margin:8px 0; }
+.npp-progress-bar {
+  height:100%; background:linear-gradient(90deg,var(--npp-primary,#6366f1),#a855f7);
+  border-radius:999px; transition:width 0.8s cubic-bezier(0.16,1,0.3,1);
+  width:0%; background-size:200% 100%; animation:nppShimmer 2s infinite; }
+
+/* --- Scroll to top button --- */
+#npp-scroll-top {
+  position:fixed; bottom:24px; left:24px; width:44px; height:44px;
+  background:var(--npp-primary,#6366f1); color:#fff; border:none;
+  border-radius:12px; cursor:pointer; font-size:1.2rem; z-index:8000;
+  box-shadow:0 6px 24px rgba(99,102,241,0.4);
+  transition:opacity 0.3s, transform 0.3s;
+  opacity:0; transform:translateY(20px); display:flex;
+  align-items:center; justify-content:center; }
+#npp-scroll-top.visible { opacity:1; transform:translateY(0); }
+#npp-scroll-top:hover { transform:scale(1.1) translateY(0); }
+
+/* --- Typewriter --- */
+.npp-typewriter::after {
+  content:'|'; animation:nppBlink 0.75s step-end infinite;
+  color:var(--npp-primary,#6366f1); }
+
+/* --- Lazy image fade-in --- */
+.npp-lazy { opacity:0; transition:opacity 0.6s ease; }
+.npp-lazy.loaded { opacity:1; }
+
+/* --- Counter display --- */
+.npp-counter-display {
+  font-size:2.5rem; font-weight:800; color:var(--npp-primary,#6366f1);
+  display:inline-block; min-width:60px; text-align:center; }
+
+/* --- Keyframes --- */
+@keyframes nppFadeIn { from { opacity:0; transform:translateY(10px); }
+  to { opacity:1; transform:translateY(0); } }
+@keyframes nppRipple { to { transform:scale(4); opacity:0; } }
+@keyframes nppShimmer {
+  0% { background-position:200% center; }
+  100% { background-position:-200% center; } }
+@keyframes nppBlink { 50% { opacity:0; } }
+@keyframes nppSlideIn {
+  from { opacity:0; transform:translateX(-20px); }
+  to { opacity:1; transform:translateX(0); } }
+@keyframes nppPop {
+  0% { transform:scale(1); }
+  50% { transform:scale(1.12); }
+  100% { transform:scale(1); } }
+
+</style>
+  </head>
+  <body>
+    <nav class="npp-navbar">
+      <div class="npp-brand">Pulse.ai</div>
+      <ul class="npp-nav-links">
+        <li>
+          <a href="#features">Features</a>
+        </li>
+        <li>
+          <a href="#pricing">Pricing</a>
+        </li>
+        <li>
+          <a href="#testimonials">Testimonials</a>
+        </li>
+      </ul>
+      <a href="#start" class="npp-button">Launch App Free ✨</a>
+    </nav>
+    <header class="npp-hero">
+      <h1>AI Workflows Made Effortless</h1>
+      <p>Automate your operations with intelligent autonomous agents. Built entirely with N++ Web.</p>
+      <a href="#pricing" class="npp-button">Start Free Trial →</a>
+    </header>
+    <div style="background: rgba(255,255,255,0.05); padding: 2.5rem; text-align:center; border-bottom: 1px solid var(--npp-border);">
+      <h3 style="margin-bottom: 2rem; color: var(--npp-text-muted);">Trusted by teams worldwide</h3>
+      <div style="display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div data-npp-count="25000" style="font-size:2.5rem;font-weight:800;color:var(--npp-primary);"></div>
+          <p style="color:var(--npp-text-muted);margin-top:0.5rem;">Developers</p>
+        </div>
+        <div style="text-align:center;">
+          <div data-npp-count="4" style="font-size:2.5rem;font-weight:800;color:var(--npp-primary);"></div>
+          <p style="color:var(--npp-text-muted);margin-top:0.5rem;">AI Model Providers</p>
+        </div>
+        <div style="text-align:center;">
+          <div data-npp-count="99" style="font-size:2.5rem;font-weight:800;color:var(--npp-primary);"></div>
+          <p style="color:var(--npp-text-muted);margin-top:0.5rem;">Uptime %</p>
+        </div>
+        <div style="text-align:center;">
+          <div data-npp-count="0" style="font-size:2.5rem;font-weight:800;color:var(--npp-primary);"></div>
+          <p style="color:var(--npp-text-muted);margin-top:0.5rem;">Setup Required (mins)</p>
+        </div>
+      </div>
+    </div>
+    <div class="npp-container">
+      <section id="features" style="margin-bottom: 4rem;" data-npp-reveal="true">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Built for Speed &amp; Reliability</h2>
+        <div class="npp-grid npp-grid-3">
+          <div class="npp-card">
+            <span class="npp-badge" style="margin-bottom: 0.75rem;">AI Core</span>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤖</div>
+            <h3>Autonomous Agents</h3>
+            <p>Self-healing pipelines that adapt to changes in real-time.</p>
+            <a href="#modal-agents" class="npp-button npp-button-secondary">Learn More</a>
+          </div>
+          <div class="npp-card">
+            <span class="npp-badge" style="margin-bottom: 0.75rem;">Speed</span>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+            <h3>Realtime Analytics</h3>
+            <p>Live telemetry streaming directly to your dashboards.</p>
+            <a href="#" class="npp-button npp-button-secondary">View Metrics</a>
+          </div>
+          <div class="npp-card">
+            <span class="npp-badge" style="margin-bottom: 0.75rem;">Security</span>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔒</div>
+            <h3>Bank-Grade Security</h3>
+            <p>End-to-end encryption with zero data leaks.</p>
+            <a href="#" class="npp-button npp-button-secondary">Audit Report</a>
+          </div>
+          <div class="npp-card">
+            <span class="npp-badge" style="margin-bottom: 0.75rem;">DevOps</span>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚀</div>
+            <h3>One-Click Deploy</h3>
+            <p>Push your AI workflows to production in seconds.</p>
+            <a href="#" class="npp-button npp-button-secondary">Deploy Now</a>
+          </div>
+          <div class="npp-card">
+            <span class="npp-badge" style="margin-bottom: 0.75rem;">Teams</span>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">👥</div>
+            <h3>Team Collaboration</h3>
+            <p>Real-time editing, comments, and role-based permissions.</p>
+            <a href="#" class="npp-button npp-button-secondary">Invite Team</a>
+          </div>
+          <div class="npp-card">
+            <span class="npp-badge" style="margin-bottom: 0.75rem;">API</span>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
+            <h3>API-First Design</h3>
+            <p>Full REST &amp; GraphQL API. Integrate with anything.</p>
+            <a href="#" class="npp-button npp-button-secondary">Read Docs</a>
+          </div>
+        </div>
+      </section>
+      <section style="margin-bottom: 4rem;" data-npp-reveal="true">
+        <h2 style="text-align:center; margin-bottom: 2rem;">Our Technology Stack</h2>
+        <div class="npp-tabs-container">
+          <div class="npp-tab-bar">
+            <button class="npp-tab-button" data-target="tab-ai">🤖 AI Engine</button>
+            <button class="npp-tab-button" data-target="tab-sec">🔒 Security</button>
+            <button class="npp-tab-button" data-target="tab-scale">📊 Scale</button>
+          </div>
+          <div class="npp-tab-panel" id="tab-ai">
+            <h4>AI Model Performance</h4>
+            <p>Response Accuracy:</p>
+            <div class="npp-progress">
+              <div class="npp-progress-bar" data-value="98" style="background: linear-gradient(90deg,#6366f1,#a855f7);"></div>
+            </div>
+            <p>Speed vs Competitors:</p>
+            <div class="npp-progress">
+              <div class="npp-progress-bar" data-value="95" style="background: linear-gradient(90deg,#10b981,#06b6d4);"></div>
+            </div>
+          </div>
+          <div class="npp-tab-panel" id="tab-sec">
+            <h4>Security Certifications</h4>
+            <ul>
+              <li>SOC 2 Type II Certified</li>
+              <li>GDPR Compliant — Data stays in your region</li>
+              <li>AES-256 encryption at rest and in transit</li>
+              <li>Zero-knowledge architecture available</li>
+            </ul>
+          </div>
+          <div class="npp-tab-panel" id="tab-scale">
+            <h4>Infrastructure at Scale</h4>
+            <p>Global Uptime SLA:</p>
+            <div class="npp-progress">
+              <div class="npp-progress-bar" data-value="99"></div>
+            </div>
+            <p>Auto-scaling from 1 to 1 million concurrent users with zero configuration.</p>
+          </div>
+        </div>
+      </section>
+      <section id="pricing" style="margin-bottom: 4rem;" data-npp-reveal="true">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Simple, Transparent Pricing</h2>
+        <div class="npp-grid npp-grid-3">
+          <div class="npp-card">
+            <span class="npp-badge" style="margin-bottom: 0.75rem;">Free Forever</span>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌱</div>
+            <h3>Starter — $0/mo</h3>
+            <p>Perfect for hobbyists and early prototypes. 5 agents, 1K runs/month.</p>
+            <a href="#" class="npp-button npp-button-secondary">Get Started Free</a>
+          </div>
+          <div class="npp-card">
+            <span class="npp-badge" style="margin-bottom: 0.75rem;">Most Popular</span>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">⭐</div>
+            <h3>Pro — $29/mo</h3>
+            <p>Unlimited agents, priority queues, and 24/7 live support.</p>
+            <a href="#modal-pro" class="npp-button npp-button-secondary">Upgrade to Pro</a>
+          </div>
+          <div class="npp-card">
+            <span class="npp-badge" style="margin-bottom: 0.75rem;">Scale</span>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏢</div>
+            <h3>Enterprise — Custom</h3>
+            <p>Dedicated infrastructure, SLA guarantees, and custom fine-tuned models.</p>
+            <a href="#modal-enterprise" class="npp-button npp-button-secondary">Contact Sales</a>
+          </div>
+        </div>
+      </section>
+      <section id="testimonials" style="margin-bottom: 4rem;" data-npp-reveal="true">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Loved by 25,000+ Engineers</h2>
+        <div class="npp-grid npp-grid-3">
+          <div class="npp-card">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">💬</div>
+            <h3>&quot;Pulse AI replaced 4 tools in our stack overnight.&quot;</h3>
+            <p>Sarah Jenkins — VP Engineering at ScaleFlow</p>
+          </div>
+          <div class="npp-card">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">💬</div>
+            <h3>&quot;The N++ web frontend loads instantly. Phenomenal design.&quot;</h3>
+            <p>Marcus Vance — Founder at Apex Labs</p>
+          </div>
+          <div class="npp-card">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">💬</div>
+            <h3>&quot;We shipped our first AI product in 2 days. Zero boilerplate.&quot;</h3>
+            <p>Liu Wei — CTO at DataStack</p>
+          </div>
+        </div>
+      </section>
+      <div id="start" style="background: var(--npp-surface-card); padding: 3rem 2rem; border-radius: 20px; border: 1px solid var(--npp-border); text-align: center; max-width: 700px; margin: 0 auto 4rem;">
+        <h2>Ready to Supercharge Your Workflow? 🚀</h2>
+        <p>Join 25,000+ developers receiving our weekly AI architecture briefings. No spam. Unsubscribe anytime.</p>
+        <form action="#" method="post" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+          <input type="email" placeholder="Enter your work email..." required style="max-width: 320px; margin-bottom: 0;">
+          <button type="submit" class="npp-button">Get Early Access</button>
+        </form>
+      </div>
+    </div>
+    <div class="npp-modal" id="modal-agents">
+      <div class="npp-modal-box">
+        <button class="npp-modal-close">×</button>
+        <div class="npp-modal-title">🤖 Autonomous Agents</div>
+        <div class="npp-modal-body">
+          <p>Pulse AI agents are self-healing, event-driven micro-orchestrators that monitor your pipelines 24/7.</p>
+          <p>They detect anomalies, reroute traffic, retry failed tasks, and send you alerts — all without a single line of manual code.</p>
+        </div>
+        <div class="npp-modal-footer">
+          <button class="npp-button" data-npp-modal-close="true">Try for Free</button>
+        </div>
+      </div>
+    </div>
+    <div class="npp-modal" id="modal-pro">
+      <div class="npp-modal-box">
+        <button class="npp-modal-close">×</button>
+        <div class="npp-modal-title">⭐ Upgrade to Pro</div>
+        <div class="npp-modal-body">
+          <p>Pro gives you unlimited AI agents, priority inference queues, team collaboration, and 24/7 live support.</p>
+          <p>Cancel anytime. 14-day free trial. No credit card required to start.</p>
+        </div>
+        <div class="npp-modal-footer">
+          <button class="npp-button" data-npp-modal-close="true">Start 14-Day Trial</button>
+        </div>
+      </div>
+    </div>
+    <footer class="npp-footer">
+      <p>© 2026 Pulse.ai. Built 100% with N++ Web Engine.</p>
+    </footer>
+    <script>
+// ╔══════════════════════════════════════════════════════╗
+// ║        N++ Interactive Web Runtime  v2.0             ║
+// ║  Zero dependencies. Pure JS. Fully interactive.      ║
+// ╚══════════════════════════════════════════════════════╝
+(function() {
+  'use strict';
+
+  // ── 1. Toast Notification System ─────────────────────────────────────────
+  function showToast(message, type) {
+    type = type || 'success';
+    var icons = { success:'✅', error:'❌', info:'💡', warning:'⚠️' };
+    var colors = { success:'#10b981', error:'#ef4444', info:'#6366f1', warning:'#f59e0b' };
+    var bg = colors[type] || colors.info;
+    var icon = icons[type] || icons.info;
+
+    var container = document.getElementById('npp-toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'npp-toast-container';
+      document.body.appendChild(container);
+    }
+    var toast = document.createElement('div');
+    toast.className = 'npp-toast';
+    toast.style.cssText = 'background:' + bg + ';color:#fff;';
+    toast.innerHTML = '<span class="npp-toast-icon">' + icon + '</span><span>' + message + '</span>';
+    container.appendChild(toast);
+    requestAnimationFrame(function() { toast.classList.add('npp-toast-show'); });
+    setTimeout(function() {
+      toast.classList.remove('npp-toast-show');
+      setTimeout(function() { toast.remove(); }, 400);
+    }, 4000);
+  }
+  window.nppToast = showToast;
+
+  // ── 2. Interactive Form Handler ───────────────────────────────────────────
+  document.addEventListener('submit', function(e) {
+    var form = e.target;
+    var action = form.getAttribute('action') || '#';
+    if (action === '#' || action === '' || action.indexOf('javascript:') === 0) {
+      e.preventDefault();
+      var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+      var originalText = submitBtn ? submitBtn.innerText : '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.innerText = 'Sending…'; }
+      setTimeout(function() {
+        showToast('Form submitted! Thank you 🎉', 'success');
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.innerText = originalText; }
+        form.reset();
+      }, 800);
+    }
+  });
+
+  // ── 3. Theme Switcher ────────────────────────────────────────────────────
+  var THEMES = {
+    'dark':           { '--npp-bg':'#090d16','--npp-surface':'#111827','--npp-surface-card':'#172033','--npp-text':'#f8fafc','--npp-text-muted':'#94a3b8','--npp-primary':'#6366f1','--npp-border':'#1e293b' },
+    'modern':         { '--npp-bg':'#f8fafc','--npp-surface':'#ffffff','--npp-surface-card':'#ffffff','--npp-text':'#0f172a','--npp-text-muted':'#64748b','--npp-primary':'#4f46e5','--npp-border':'#e2e8f0' },
+    'glassmorphism':  { '--npp-bg':'linear-gradient(135deg,#0f172a,#1e1b4b,#311042)','--npp-surface':'rgba(255,255,255,0.07)','--npp-surface-card':'rgba(255,255,255,0.08)','--npp-text':'#ffffff','--npp-text-muted':'#cbd5e1','--npp-primary':'#a855f7','--npp-border':'rgba(255,255,255,0.15)' },
+    'cyberpunk':      { '--npp-bg':'#050508','--npp-surface':'#0d0e15','--npp-surface-card':'#121420','--npp-text':'#00ffcc','--npp-text-muted':'#8892b0','--npp-primary':'#ff0055','--npp-border':'#25283d' }
+  };
+  function applyTheme(name) {
+    var palette = THEMES[name]; if (!palette) return;
+    var root = document.documentElement;
+    for (var k in palette) { if (palette.hasOwnProperty(k)) root.style.setProperty(k, palette[k]); }
+    if (palette['--npp-bg'] && palette['--npp-bg'].indexOf('gradient') > -1)
+      document.body.style.backgroundImage = palette['--npp-bg'];
+    else
+      document.body.style.backgroundColor = palette['--npp-bg'];
+    localStorage.setItem('npp_theme', name);
+    showToast('Theme: ' + name + ' ✨', 'info');
+    // Update switcher dropdown
+    var sel = document.getElementById('npp-theme-sel');
+    if (sel) sel.value = name;
+  }
+  window.nppSetTheme = applyTheme;
+  // Restore saved theme
+  var savedTheme = localStorage.getItem('npp_theme');
+  if (savedTheme && THEMES[savedTheme]) applyTheme(savedTheme);
+
+  // ── 4. Tab Switcher ──────────────────────────────────────────────────────
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.npp-tab-button');
+    if (!btn) return;
+    var container = btn.closest('.npp-tabs-container');
+    if (!container) return;
+    var targetId = btn.getAttribute('data-target');
+    container.querySelectorAll('.npp-tab-button').forEach(function(b) { b.classList.remove('active'); });
+    container.querySelectorAll('.npp-tab-panel').forEach(function(p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+    var panel = document.getElementById(targetId);
+    if (panel) panel.classList.add('active');
+  });
+  // Auto-activate first tab in every tabs container
+  document.querySelectorAll('.npp-tabs-container').forEach(function(tc) {
+    var firstBtn = tc.querySelector('.npp-tab-button');
+    if (firstBtn && !tc.querySelector('.npp-tab-button.active')) firstBtn.click();
+  });
+
+  // ── 5. Modal System ──────────────────────────────────────────────────────
+  document.addEventListener('click', function(e) {
+    // Open
+    var trigger = e.target.closest('[data-npp-modal]');
+    if (trigger) {
+      var id = trigger.getAttribute('data-npp-modal');
+      var modal = document.getElementById(id);
+      if (modal) { modal.style.display = 'flex'; requestAnimationFrame(function() { modal.classList.add('open'); }); }
+    }
+    // Close via button
+    var closeBtn = e.target.closest('.npp-modal-close, [data-npp-modal-close]');
+    if (closeBtn) {
+      var m = closeBtn.closest('.npp-modal');
+      if (m) { m.classList.remove('open'); setTimeout(function() { m.style.display = 'none'; }, 260); }
+    }
+    // Close by clicking backdrop
+    if (e.target.classList.contains('npp-modal')) {
+      e.target.classList.remove('open');
+      setTimeout(function() { e.target.style.display = 'none'; }, 260);
+    }
+  });
+  // Close modal on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.npp-modal.open').forEach(function(m) {
+        m.classList.remove('open'); setTimeout(function() { m.style.display='none'; }, 260);
+      });
+    }
+  });
+
+  // ── 6. Accordion ─────────────────────────────────────────────────────────
+  document.addEventListener('click', function(e) {
+    var hdr = e.target.closest('.npp-accordion-header');
+    if (!hdr) return;
+    var item = hdr.closest('.npp-accordion-item');
+    var body = item ? item.querySelector('.npp-accordion-body') : null;
+    if (!body) return;
+    var isOpen = hdr.classList.contains('open');
+    // Close all in same accordion
+    var acc = hdr.closest('.npp-accordion');
+    if (acc) {
+      acc.querySelectorAll('.npp-accordion-header.open').forEach(function(h) {
+        h.classList.remove('open');
+        var b = h.closest('.npp-accordion-item').querySelector('.npp-accordion-body');
+        if (b) b.classList.remove('open');
+      });
+    }
+    if (!isOpen) { hdr.classList.add('open'); body.classList.add('open'); }
+  });
+
+  // ── 7. Counter Buttons ───────────────────────────────────────────────────
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-npp-counter]');
+    if (!btn) return;
+    var targetId = btn.getAttribute('data-npp-counter');
+    var step = parseInt(btn.getAttribute('data-npp-step') || '1', 10);
+    var display = document.getElementById(targetId);
+    if (display) {
+      var val = parseInt(display.innerText || '0', 10); val += step;
+      display.innerText = val;
+      display.style.animation = 'none';
+      requestAnimationFrame(function() { display.style.animation = 'nppPop 0.3s ease'; });
+    }
+    btn.style.transform = 'scale(0.93)';
+    setTimeout(function() { btn.style.transform = ''; }, 120);
+  });
+
+  // ── 8. Live Search Filter ────────────────────────────────────────────────
+  document.addEventListener('input', function(e) {
+    var inp = e.target.closest('[data-npp-filter]');
+    if (!inp) return;
+    var selector = inp.getAttribute('data-npp-filter');
+    var query = inp.value.toLowerCase().trim();
+    document.querySelectorAll(selector).forEach(function(el) {
+      el.style.display = el.innerText.toLowerCase().includes(query) ? '' : 'none';
+    });
+  });
+
+  // ── 9. Ripple Effect on Buttons ──────────────────────────────────────────
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.npp-button');
+    if (!btn) return;
+    var ripple = document.createElement('span');
+    ripple.className = 'npp-ripple';
+    var rect = btn.getBoundingClientRect();
+    var size = Math.max(rect.width, rect.height);
+    ripple.style.cssText = 'width:'+size+'px;height:'+size+'px;left:'+(e.clientX-rect.left-size/2)+'px;top:'+(e.clientY-rect.top-size/2)+'px;';
+    btn.appendChild(ripple);
+    setTimeout(function() { ripple.remove(); }, 700);
+  });
+
+  // ── 10. Animated Progress Bars ───────────────────────────────────────────
+  function animateProgressBars() {
+    document.querySelectorAll('.npp-progress-bar[data-value]').forEach(function(bar) {
+      var val = bar.getAttribute('data-value');
+      setTimeout(function() { bar.style.width = val + '%'; }, 200);
+    });
+  }
+
+  // ── 11. Scroll-to-Top Button ─────────────────────────────────────────────
+  var scrollTopBtn = document.createElement('button');
+  scrollTopBtn.id = 'npp-scroll-top';
+  scrollTopBtn.innerHTML = '↑';
+  scrollTopBtn.title = 'Back to top';
+  scrollTopBtn.addEventListener('click', function() {
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+  document.body.appendChild(scrollTopBtn);
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) scrollTopBtn.classList.add('visible');
+    else scrollTopBtn.classList.remove('visible');
+  }, { passive:true });
+
+  // ── 12. Lazy Image Loading ────────────────────────────────────────────────
+  if ('IntersectionObserver' in window) {
+    var lazyObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var img = entry.target;
+          if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+          img.classList.add('loaded');
+          lazyObs.unobserve(img);
+        }
+      });
+    }, { threshold:0.1 });
+    document.querySelectorAll('img.npp-lazy').forEach(function(img) { lazyObs.observe(img); });
+  }
+
+  // ── 13. Typewriter Effect ────────────────────────────────────────────────
+  function typeWriter(el, text, speed) {
+    speed = speed || 60;
+    var i = 0;
+    el.textContent = '';
+    el.classList.add('npp-typewriter');
+    var t = setInterval(function() {
+      el.textContent += text[i++];
+      if (i >= text.length) { clearInterval(t); el.classList.remove('npp-typewriter'); }
+    }, speed);
+  }
+  window.nppTypeWriter = typeWriter;
+  document.querySelectorAll('[data-npp-type]').forEach(function(el) {
+    var delay = parseInt(el.getAttribute('data-npp-delay') || '500', 10);
+    setTimeout(function() { typeWriter(el, el.getAttribute('data-npp-type')); }, delay);
+  });
+
+  // ── 14. Scroll Reveal Animations ────────────────────────────────────────
+  if ('IntersectionObserver' in window) {
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'nppSlideIn 0.5s ease forwards';
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.12 });
+    document.querySelectorAll('[data-npp-reveal]').forEach(function(el) {
+      el.style.opacity = '0';
+      revealObs.observe(el);
+    });
+  }
+
+  // ── 15. Inject Theme Switcher Dropdown into Navbar ──────────────────────
+  document.addEventListener('DOMContentLoaded', function() {
+    var nav = document.querySelector('.npp-navbar');
+    if (nav && !document.getElementById('npp-theme-switcher')) {
+      var sw = document.createElement('div');
+      sw.id = 'npp-theme-switcher';
+      sw.style.cssText = 'display:flex;align-items:center;gap:8px;margin-left:auto;padding-right:8px;';
+      sw.innerHTML = '<select id="npp-theme-sel" onchange="window.nppSetTheme(this.value)" '
+        + 'style="background:var(--npp-surface);color:var(--npp-text);border:1px solid var(--npp-border);'
+        + 'padding:6px 12px;border-radius:8px;font-size:0.85rem;cursor:pointer;">'
+        + '<option value="dark">🌙 Dark</option>'
+        + '<option value="modern">☀️ Modern</option>'
+        + '<option value="glassmorphism">🔮 Glass</option>'
+        + '<option value="cyberpunk">⚡ Cyber</option>'
+        + '</select>';
+      nav.appendChild(sw);
+      var cur = localStorage.getItem('npp_theme') || 'dark';
+      var sel = document.getElementById('npp-theme-sel');
+      if (sel) sel.value = cur;
+    }
+    // Animate progress bars on load
+    animateProgressBars();
+  });
+
+  // ── 16. Copy-to-Clipboard Buttons ────────────────────────────────────────
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-npp-copy]');
+    if (!btn) return;
+    var targetId = btn.getAttribute('data-npp-copy');
+    var el = targetId ? document.getElementById(targetId) : btn.previousElementSibling;
+    var text = el ? (el.value || el.innerText || el.textContent) : '';
+    if (!text) return;
+    navigator.clipboard.writeText(text.trim()).then(function() {
+      showToast('Copied to clipboard! 📋', 'success');
+      var orig = btn.innerText;
+      btn.innerText = '✓ Copied';
+      setTimeout(function() { btn.innerText = orig; }, 2000);
+    });
+  });
+
+  // ── 17. Smooth Number Counting Animation ────────────────────────────────
+  function animateCount(el, target, duration) {
+    duration = duration || 1800;
+    var start = 0; var startTime = null;
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      var p = Math.min((ts - startTime) / duration, 1);
+      var ease = 1 - Math.pow(1 - p, 4);
+      el.innerText = Math.floor(ease * target).toLocaleString();
+      if (p < 1) requestAnimationFrame(step);
+      else el.innerText = target.toLocaleString();
+    }
+    requestAnimationFrame(step);
+  }
+  window.nppAnimateCount = animateCount;
+  if ('IntersectionObserver' in window) {
+    var countObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.getAttribute('data-npp-count') || '0', 10);
+          animateCount(el, target);
+          countObs.unobserve(el);
+        }
+      });
+    }, { threshold:0.3 });
+    document.querySelectorAll('[data-npp-count]').forEach(function(el) { countObs.observe(el); });
+  }
+
+  // ── Done ──────────────────────────────────────────────────────────────────
+  console.log('%c N++ Web Runtime v2.0 loaded ⚡ ', 'background:#6366f1;color:#fff;padding:4px 10px;border-radius:4px;font-weight:bold;');
+
+})();
+</script>
+  </body>
+</html>

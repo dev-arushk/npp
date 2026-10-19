@@ -1,0 +1,47 @@
+// ===============================================================================
+//                       N++ ENGLISH CALCULATOR
+//    Demonstrates: Functions, English Comparisons, Math, and User Input
+// ===============================================================================
+
+say "=================================================="
+say "           WELCOME TO THE N++ CALCULATOR          "
+say "=================================================="
+say ""
+
+to add with a, b
+    give back a + b
+end
+
+to subtract with a, b
+    give back a - b
+end
+
+to multiply with a, b
+    give back a * b
+end
+
+to divide with a, b
+    if b is 0 then
+        give back "Error: Division by zero is not allowed!"
+    end
+    give back a / b
+end
+
+to power with a, b
+    give back a ^ b
+end
+
+// Demonstration of quick calculations
+say "--- Automatic Calculation Demonstrations ---"
+set x to 45
+set y to 15
+
+say x + " + " + y + " = " + add(x, y)
+say x + " - " + y + " = " + subtract(x, y)
+say x + " * " + y + " = " + multiply(x, y)
+say x + " / " + y + " = " + divide(x, y)
+say "2 to the power of 8 = " + power(2, 8)
+say "Square root of 144 = " + sqrt(144)
+say "Round 3.785 = " + round(3.785, 2)
+say ""
+say "Calculator demo completed successfully!"

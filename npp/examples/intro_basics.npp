@@ -1,0 +1,59 @@
+// ==============================================================
+//                    WELCOME TO N++ (INTRO BASICS)
+//
+// Writing N++ code is as simple as writing plain English sentences!
+// Run this file anytime with:
+//     npp examples/intro_basics.npp
+// ==============================================================
+
+// 1. TALKING TO THE SCREEN
+// Just use 'say' or 'print' followed by what you want to say.
+say "Hello! Welcome to N++."
+say "Writing code here is just like talking in English."
+
+// 2. REMEMBERING THINGS (VARIABLES)
+// Use 'set <name> to <value>'
+set my_name to "Sam"
+set my_age to 20
+say "My name is " + my_name + " and I am " + my_age + " years old."
+
+// You can change values using 'change <name> to <value>'
+change my_age to 21
+say "Today is my birthday! Now I am " + my_age
+
+// 3. MAKING DECISIONS (IF / OTHERWISE)
+// Read it aloud: "If score is greater than 50 then say Pass, otherwise say Try again"
+set score to 85
+
+if score is greater than 50 then
+    say "You passed the test with a score of " + score + "!"
+otherwise
+    say "Keep practicing!"
+end
+
+// 4. DOING SOMETHING MULTIPLE TIMES (REPEAT LOOPS)
+// "Repeat 3 times: say Hip hip hooray!"
+say "Cheering 3 times:"
+repeat 3 times
+    say "  Hip hip hooray!"
+end
+
+// 5. GOING THROUGH A LIST (FOR EACH)
+// Put items in brackets, and look at each one:
+set favorite_colors to ["blue", "emerald green", "gold"]
+
+say "Here are my favorite colors:"
+for each color in favorite_colors
+    say "  * I love " + color
+end
+
+// 6. CREATING REUSABLE ACTIONS (FUNCTIONS)
+// Use 'to <action_name> with <inputs>' and 'give back <result>'
+to make_greeting with person_name
+    give back "Have a wonderful day, " + person_name + "!"
+end
+
+set message to make_greeting("Alex")
+say message
+
+say "That's it! You already know the basics of N++!"

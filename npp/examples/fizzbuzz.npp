@@ -1,0 +1,17 @@
+// ==============================================================
+//                    FIZZBUZZ IN N++
+// ==============================================================
+
+say "Running FizzBuzz from 1 to 20:"
+
+for each n in range(1, 21)
+    if n % 15 == 0 then
+        say "FizzBuzz"
+    otherwise if n % 3 == 0 then
+        say "Fizz"
+    otherwise if n % 5 == 0 then
+        say "Buzz"
+    otherwise
+        say n
+    end
+end
